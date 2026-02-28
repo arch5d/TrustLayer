@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: #0b0f17;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+::selection {
+  background: rgba(79, 70, 229, 0.35);
+}
+
+.glass {
+  background: rgba(17, 24, 39, 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+

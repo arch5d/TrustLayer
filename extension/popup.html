@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrustLayer</title>
+    <style>
+      :root {
+        --bg: #0b0f17;
+        --card: #111827;
+        --primary: #4f46e5;
+        --safe: #22c55e;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        width: 340px;
+        background: var(--bg);
+        color: rgba(255, 255, 255, 0.92);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+      }
+      .wrap {
+        padding: 14px;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .mark {
+        width: 36px;
+        height: 36px;
+        border-radius: 14px;
+        background: rgba(79, 70, 229, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.22), 0 0 20px rgba(79, 70, 229, 0.15);
+        display: grid;
+        place-items: center;
+        color: var(--primary);
+        font-weight: 800;
+      }
+      .title {
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+      .sub {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 2px;
+      }
+      .card {
+        background: rgba(17, 24, 39, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 18px;
+        padding: 14px;
+        box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.12), 0 0 16px rgba(79, 70, 229, 0.08);
+      }
+      .row {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      .status {
+        margin-top: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .checklist {
+        margin-top: 12px;
+        display: grid;
+        gap: 10px;
+      }
+      .check {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 10px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        margin-top: 4px;
+        background: var(--safe);
+        box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.15);
+        flex: 0 0 auto;
+      }
+      .check b {
+        display: block;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.86);
+      }
+      .check span {
+        display: block;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 2px;
+      }
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 12px;
+      }
+      button {
+        height: 40px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      button.primary {
+        background: var(--primary);
+        border-color: rgba(79, 70, 229, 0.65);
+        box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.2), 0 0 18px rgba(79, 70, 229, 0.12);
+      }
+      button:hover {
+        filter: brightness(1.08);
+      }
+      .circleWrap {
+        width: 108px;
+        height: 108px;
+        position: relative;
+      }
+      .circleCenter {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        text-align: center;
+      }
+      .score {
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -0.4px;
+      }
+      .scoreSub {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <div class="logo">
+          <div class="mark">T</div>
+          <div>
+            <div class="title">TrustLayer</div>
+            <div class="sub">Extension prototype</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="circleWrap">
+            <svg id="ring" width="108" height="108" viewBox="0 0 108 108" style="transform: rotate(-90deg)">
+              <circle cx="54" cy="54" r="44" stroke="rgba(255,255,255,0.10)" stroke-width="10" fill="transparent" />
+              <circle
+                id="ringProgress"
+                cx="54"
+                cy="54"
+                r="44"
+                stroke="var(--warning)"
+                stroke-width="10"
+                stroke-linecap="round"
+                fill="transparent"
+              />
+            </svg>
+            <div class="circleCenter">
+              <div>
+                <div class="score" id="scoreText">76</div>
+                <div class="scoreSub">Trust Score</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="flex: 1">
+            <div style="font-weight: 800; font-size: 14px">Status</div>
+            <div class="sub" style="margin-top: 4px" id="statusText">Suspicious Website</div>
+            <div class="status" id="statusBadge">SUSPICIOUS</div>
+          </div>
+        </div>
+
+        <div class="checklist">
+          <div class="check">
+            <div class="dot"></div>
+            <div><b>SSL Status</b><span id="sslVal">Valid</span></div>
+          </div>
+          <div class="check">
+            <div class="dot"></div>
+            <div><b>Domain Trust</b><span id="domainVal">Medium Risk</span></div>
+          </div>
+          <div class="check">
+            <div class="dot"></div>
+            <div><b>Phishing Risk</b><span id="phishVal">Low Risk</span></div>
+          </div>
+          <div class="check">
+            <div class="dot"></div>
+            <div><b>AI Content Risk</b><span id="aiVal">Safe</span></div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="primary" id="scanBtn">Scan Page</button>
+          <button id="dashBtn">View Dashboard</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
+
